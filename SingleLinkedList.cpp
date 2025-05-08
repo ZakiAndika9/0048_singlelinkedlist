@@ -4,7 +4,7 @@ using namespace std;
 
 class Node
 {
-	public:
+public:
 	int noMhs;
 	Node *next;
 };
@@ -13,7 +13,7 @@ class LinkedList
 {
 	Node *START;
 
-	public:
+public:
 	LinkedList()
 	{
 		START = NULL;
@@ -22,13 +22,13 @@ class LinkedList
 	void addNode()
 	{
 		int nim;
-		cout <<"\nMasukkan Nomor Mahasiswa: ";
+		cout << "\nMasukkan Nomor Mahasiswa: ";
 		cin >> nim;
 
 		Node *nodeBaru = new Node;
 		nodeBaru->noMhs = nim;
 
-		if (START ==  NULL || nim <= START->noMhs)
+		if (START == NULL || nim <= START->noMhs)
 		{
 			if ((START != NULL) && (nim == START->noMhs))
 			{
@@ -45,7 +45,7 @@ class LinkedList
 
 		while ((current != NULL) && (nim >= current->noMhs))
 		{
-			if (nim == current ->noMhs)
+			if (nim == current->noMhs)
 			{
 				cout << "\nDupliaksi noMhs tidak diijinkan\n";
 				return;
@@ -81,14 +81,33 @@ class LinkedList
 	{
 		Node *current, *previous;
 		if (!Search(nim, &previous, &current))
-		return false;
+			return false;
 
 		if (current == START)
-		START = START->next;
+			START = START->next;
 		else
-		previous->next = current->next;
+			previous->next = current->next;
 
 		delete current;
 		return true;
 	}
-	};
+
+	void traverse()
+	{
+		if (listEmpty())
+		{
+			cout << "\nList Kosong\n";
+		}
+		else
+		{
+			cout << "\nData didalam list adalah:\n";
+			Node *currentNode = START;
+			while (currentNode != NULL)
+			{
+				cout << currentNode->noMhs << endl;
+				currentNode = currentNode->next;
+			}
+			cout << endl;
+		}
+	}
+};
